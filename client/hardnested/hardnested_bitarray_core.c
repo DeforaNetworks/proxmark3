@@ -147,7 +147,7 @@ inline uint32_t *MALLOC_BITARRAY(uint32_t x)
 {
 #if defined (_WIN32)
 	return __builtin_assume_aligned(_aligned_malloc((x), __BIGGEST_ALIGNMENT__), __BIGGEST_ALIGNMENT__);
-#elif defined (__APPLE__)
+#elif defined (__APPLE__) || defined(__NetBSD__)
 	uint32_t *allocated_memory;
 	if (posix_memalign((void**)&allocated_memory, __BIGGEST_ALIGNMENT__, x)) {
 		return NULL;
