@@ -31,9 +31,15 @@ else
 	ifeq ($(platform),Darwin)
 		LUAPLATFORM = macosx
 	else
-		LUALIB +=  -ldl
-		LDLIBS +=  -ltermcap -lncurses
-		LUAPLATFORM = linux
+		ifeq ($(platform),NetBSD)
+			LDLIBS +=  -L/usr/pkg/lib -Wl,-rpath,/usr/pkg/lib
+			LDLIBS +=  -ltermcap -lncurses
+			LUAPLATFORM = netbsd
+		else
+			LUALIB +=  -ldl
+			LDLIBS +=  -ltermcap -lncurses
+			LUAPLATFORM = linux
+		endif
 	endif
 endif
 
