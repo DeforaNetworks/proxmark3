@@ -86,6 +86,13 @@ serial_port uart_open(const char* pcPortName)
     return CLAIMED_SERIAL_PORT;
   }
 
+  int i;
+  i = fcntl(sp->fd, F_GETFL, 0);
+  if((i & ~O_NONBLOCK) != i && fcntl(sp->fd, F_SETFL, i & ~O_NONBLOCK) != 0) {
+    free(sp);
+    return NONBLOCKING_SERIAL_PORT;
+  }
+
   // Try to retrieve the old (current) terminal info struct
   if(tcgetattr(sp->fd,&sp->tiOld) == -1) {
     uart_close(sp);

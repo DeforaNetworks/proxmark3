@@ -56,6 +56,10 @@ typedef void* serial_port;
  */
 #define CLAIMED_SERIAL_PORT (void*)(~2)
 
+/* Returned by uart_open if the serial port specified is in non-blocking mode.
+ */
+#define NONBLOCKING_SERIAL_PORT (void*)(~4)
+
 /* Given a user-specified port name, connect to the port and return a structure
  * used for future references to that port.
  *
