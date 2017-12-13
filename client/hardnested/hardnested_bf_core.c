@@ -146,7 +146,7 @@ bitslice_test_nonces_t bitslice_test_nonces_dispatch;
 #if defined (_WIN32)
 #define malloc_bitslice(x) __builtin_assume_aligned(_aligned_malloc((x), MAX_BITSLICES/8), MAX_BITSLICES/8)
 #define free_bitslice(x) _aligned_free(x)
-#elif defined (__APPLE__)
+#elif defined (__APPLE__) || defined(__NetBSD__)
 static void *malloc_bitslice(size_t x) {
 	char *allocated_memory;
 	if (posix_memalign((void**)&allocated_memory, MAX_BITSLICES/8, x)) {
