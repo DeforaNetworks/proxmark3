@@ -82,7 +82,9 @@ void wiegand_add_parity(uint8_t *target, uint8_t *source, uint8_t length);
 
 void xor(unsigned char *dst, unsigned char *src, size_t len);
 int32_t le24toh(uint8_t data[3]);
+#ifndef le32toh
 uint32_t le32toh (uint8_t *data);
+#endif
 void rol(uint8_t *data, const size_t len);
 
 void clean_ascii(unsigned char *buf, size_t len);
