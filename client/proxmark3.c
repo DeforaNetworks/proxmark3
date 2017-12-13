@@ -362,7 +362,7 @@ int main(int argc, char* argv[]) {
 			msleep(1000);
 			printf(".");
 			fflush(stdout);
-		} while(++openCount < 20 && (sp == INVALID_SERIAL_PORT || sp == CLAIMED_SERIAL_PORT));
+		} while(++openCount < 20 && (sp == INVALID_SERIAL_PORT || sp == CLAIMED_SERIAL_PORT || sp == NONBLOCKING_SERIAL_PORT));
 		printf("\n");
 	}
 
